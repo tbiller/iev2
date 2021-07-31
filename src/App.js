@@ -14,14 +14,14 @@ export default function App() {
         'scroll',
         fixedColumnScrollListener
       );
-      fixedRowRef.current.scrollLeft = window.scrollX;
+      fixedRowRef.current.scrollLeft = window.pageXOffset;
       fixedRowRef.current.addEventListener('scroll', fixedColumnScrollListener);
 
       fixedColumnRef.current.removeEventListener(
         'scroll',
         fixedColumnScrollListener
       );
-      fixedColumnRef.current.scrollTop = window.scrollY;
+      fixedColumnRef.current.scrollTop = window.pageYOffset;
       fixedColumnRef.current.addEventListener(
         'scroll',
         fixedColumnScrollListener
@@ -30,13 +30,13 @@ export default function App() {
 
     function fixedRowScrollListener(e) {
       window.removeEventListener('scroll', windowScrollListener);
-      window.scroll(fixedRowRef.current.scrollLeft, window.scrollY);
+      window.scroll(fixedRowRef.current.scrollLeft, window.pageYOffset);
       window.addEventListener('scroll', windowScrollListener);
     }
 
     function fixedColumnScrollListener(e) {
       window.removeEventListener('scroll', windowScrollListener);
-      window.scroll(window.scrollX, fixedColumnRef.current.scrollTop);
+      window.scroll(window.pageXOffset, fixedColumnRef.current.scrollTop);
       window.addEventListener('scroll', windowScrollListener);
     }
 
