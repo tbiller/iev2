@@ -43,13 +43,32 @@ export default function App() {
   );
 }
 
+const Cell = ({ row, col }) => {
+  return (
+    <div
+      style={{
+        width: '80px',
+        height: '80px',
+        background: 'lightblue',
+        // border: row ==='1px solid white',
+        textAlign: 'center'
+      }}
+    >
+      <h3>{`${row}.${col}`}</h3>{' '}
+    </div>
+  );
+};
+
 const Row = ({ stickyColRefs, row }) => {
+  const cells = [];
+  for (let i = 0; i < 20; i++) {
+    cells.push(<Cell key={i} row={row} col={i} />);
+  }
   return (
     <div
       style={{
         display: 'flex',
-        width: 'max-content',
-        borderBottom: '1px solid gray'
+        width: 'max-content'
       }}
     >
       <div
@@ -64,24 +83,7 @@ const Row = ({ stickyColRefs, row }) => {
         <h3 style={{ textAlign: 'center' }}>{row}</h3>
       </div>
       <div style={{ paddingLeft: '400px' }} />
-      <div
-        style={{
-          width: '500px',
-          height: '80px',
-          background: 'lightblue'
-        }}
-      >
-        <h3 style={{ paddingLeft: '80px' }}>{`Col ${row}.1`}</h3>{' '}
-      </div>
-      <div
-        style={{
-          width: '500px',
-          height: '80px',
-          background: 'lightblue'
-        }}
-      >
-        <h3 style={{ paddingLeft: '80px' }}>{`Col ${row}.2`}</h3>{' '}
-      </div>
+      {cells}
     </div>
   );
 };
